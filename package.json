@@ -1,0 +1,21 @@
+{
+  "name": "file-creator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A web app to create, download, and save files to Firebase",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^12.10.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}

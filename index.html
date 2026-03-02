@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+
+<body>
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Auth Screen -->
+    <section id="auth-screen" class="screen active">
+        <div class="auth-card glass">
+            <div class="auth-header">
+                <div class="logo">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect width="48" height="48" rx="12" fill="url(#logo-grad)" />
+                        <path d="M14 14h14l6 6v14a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V14z" stroke="#fff" stroke-width="2"
+                            fill="none" />
+                        <path d="M28 14v6h6" stroke="#fff" stroke-width="2" fill="none" />
+                        <path d="M20 26h8M20 30h5" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="logo-grad" x1="0" y1="0" x2="48" y2="48">
+                                <stop stop-color="#6366f1" />
+                                <stop offset="1" stop-color="#a855f7" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1>File Creator</h1>
+                <p class="subtitle">Create, download, and save files to the cloud</p>
+            </div>
+            <button id="btn-google-signin" class="btn btn-google">
+                <svg width="20" height="20" viewBox="0 0 48 48">
+                    <path fill="#EA4335"
+                        d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                    <path fill="#4285F4"
+                        d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                    <path fill="#FBBC05"
+                        d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                    <path fill="#34A853"
+                        d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                </svg>
+                Sign in with Google
+            </button>
+        </div>
+    </section>
+
+    <!-- Main App -->
+    <section id="app-screen" class="screen">
+        <!-- Navigation Bar -->
+        <nav class="navbar glass">
+            <div class="nav-left">
+                <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+                    <rect width="48" height="48" rx="12" fill="url(#nav-logo-grad)" />
+                    <path d="M14 14h14l6 6v14a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V14z" stroke="#fff" stroke-width="2"
+                        fill="none" />
+                    <path d="M28 14v6h6" stroke="#fff" stroke-width="2" fill="none" />
+                    <defs>
+                        <linearGradient id="nav-logo-grad" x1="0" y1="0" x2="48" y2="48">
+                            <stop stop-color="#6366f1" />
+                            <stop offset="1" stop-color="#a855f7" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="nav-title">File Creator</span>
+            </div>
+            <div class="nav-center">
+                <button class="nav-tab active" data-tab="creator">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h9" />
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                    </svg>
+                    Creator
+                </button>
+                <button class="nav-tab" data-tab="dashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    Dashboard
+                </button>
+            </div>
+            <div class="nav-right">
+                <div class="user-info">
+                    <img id="user-avatar" src="" alt="avatar" class="avatar" />
+                    <span id="user-name" class="user-name"></span>
+                </div>
+                <button id="btn-signout" class="btn btn-ghost btn-sm">Sign Out</button>
+            </div>
+        </nav>
+
+        <!-- Creator Tab -->
+        <div id="tab-creator" class="tab-content active">
+            <div class="creator-container">
+                <div class="creator-header">
+                    <div class="filename-group">
+                        <label for="file-name">Filename</label>
+                        <input type="text" id="file-name" class="input"
+                            placeholder="e.g. notes.txt, script.js, data.json" />
+                    </div>
+                    <div class="draft-indicator" id="draft-indicator" style="display:none;">
+                        <span class="dot"></span> Draft saved
+                    </div>
+                </div>
+                <div class="editor-wrapper glass">
+                    <textarea id="file-content" class="editor"
+                        placeholder="Start typing your file content here..."></textarea>
+                </div>
+                <div class="creator-actions">
+                    <button id="btn-download" class="btn btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        Download Locally
+                    </button>
+                    <button id="btn-save-cloud" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+                        </svg>
+                        Save to Cloud
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="tab-dashboard" class="tab-content">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <h2>Your Cloud Files</h2>
+                    <button id="btn-refresh" class="btn btn-ghost btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10" />
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                        </svg>
+                        Refresh
+                    </button>
+                </div>
+                <div id="files-grid" class="files-grid">
+                    <!-- File cards injected here -->
+                </div>
+                <div id="empty-state" class="empty-state" style="display:none;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" stroke-linejoin="round" opacity="0.3">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                        <polyline points="13 2 13 9 20 9" />
+                    </svg>
+                    <p>No files yet. Create your first file!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- File Preview Modal -->
+    <div id="file-preview-modal" class="modal-overlay" style="display:none;">
+        <div class="modal glass">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <div class="file-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                            <polyline points="13 2 13 9 20 9" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 id="preview-filename"></h3>
+                        <span id="preview-meta" class="file-meta"></span>
+                    </div>
+                </div>
+                <button id="btn-close-preview" class="btn btn-ghost btn-sm" title="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <textarea id="preview-content" class="modal-body" spellcheck="false"></textarea>
+            <div class="modal-footer">
+                <button id="btn-preview-save" class="btn btn-primary btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                        <polyline points="17 21 17 13 7 13 7 21" />
+                        <polyline points="7 3 7 8 15 8" />
+                    </svg>
+                    Save Changes
+                </button>
+                <button id="btn-preview-download" class="btn btn-secondary btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Download
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
